@@ -1,0 +1,59 @@
+// this is the program based on 2 pointer 
+// we have given two sorted arrays and we need to return the Union of the both the arrays
+/*
+arr1 = [1,1,2,3,4]
+arr2 = [2,3,4,4,5,6]
+union = [1,2,3,4,5,6]
+*/
+
+// Bruteforce : use set container which includes only unique element in sorted fashion
+
+// Optimal : 2 pointer approach
+
+vector<int> sortedArray(vector<int> a ,vector<int> b)
+{
+    int n1= a.size();
+    int n2= b.size();
+    int i=0, j=0;
+    vector<int> union;
+    while(i<n1 && j<n2)
+    {
+        if(a[i]<=b[j])
+        {
+            if(union.back()!=a[i] || union.size() == 0)
+            {
+                union.push_back(a[i]);
+            }
+            i++;
+        }
+        else 
+        {            
+            if(union.back()!=b[j] || union.size() == 0)
+            {
+                union.push_back(b[j]);
+            }
+            j++ ;
+        }
+        while(j<n2)
+        {
+            if(union.size()==0 || union.back()!=b[j])
+            {
+                union.push_back(b[j]);
+            }
+            j++;
+        }
+        while(i<n1)
+        {
+            if(union.size()==0 || union.back()!=a[i])
+            {
+                union.push_back(a[i]);
+            }
+            j++;
+        }
+    }
+}
+
+
+
+// TC = O(n1) + O(n2)
+// SC = O(n1+n2) to return 

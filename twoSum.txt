@@ -1,0 +1,6 @@
+/*
+TWO SUM pattern and algorithm 
+QUestion to find whether the array contains two element of sum k 
+*/
+// arr = [2,6,5,8,11]  target =14
+// BruteForce : Pick one element and take the sum of that element with every other 

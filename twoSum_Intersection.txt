@@ -1,0 +1,35 @@
+// this is the program based on 2 pointer 
+// we have given two sorted arrays and we need to return the intersection of the both the arrays
+//Repetition is allowed
+/*
+arr1 = [1,2,2,3,3,4,5,6]
+arr2 = [2,3,3,5,6,6,7]
+intersection = [2,3,3,5,6]
+*/
+
+// Bruteforce : 
+
+// Optimal : 2 pointer approach 
+// TC : O(n1 + n2)
+// SC : O(1)
+
+int i = 0 , j=0;
+vector<int> ans;
+while(i<n && j<m)
+{
+    if(A[i] < B[j])
+    {
+        i++;
+    }
+    else if(B[j] < A[i])
+    {
+        j++;
+    }
+    else
+    {
+        ans.push_back(A[i]);
+        i++;
+        j++;
+    }
+    return ans;
+}
