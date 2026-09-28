@@ -1,0 +1,53 @@
+// this is the program based on 2 pointer 
+// we have given a array and we need to return the quadrouple which gives the sum = target
+
+/*
+arr = [-1,0,1,2,-1,-4]
+arr[i] + arr[j] + arr[k] + arr[l] = target
+i != j != k != l
+
+Return unique quads
+*/
+
+// BruteForce : Take 4 loops and 3 loops fixed and one loop iterating and finding the quadrouple
+
+// Better : HashMap
+
+// Optimal : 2 pointer approach 
+// First sort it and then apply 2 pointer while fixing two pointers 
+
+sort(num.begin() , num.end());
+int n = nums.size();
+vector<vector<int>> ans;
+for(int i=0 ; i<n; i++)
+{
+    if(i>0 && nums[i] == nums[i-1]) continue ;
+    for(int j = i+1 ; j<n ; j++)
+    {
+        if(j!= i+1 && nums[j] == nums[j-1]) continue ;
+        int k=j+1;
+        int l=n-1;
+        while(k<l)
+        {
+            long long sum = nums[i];
+            sum += nums[j];
+            sum += nums[k];
+            sum += nums[l];
+            if(sum == target)
+            {
+                vector<int> temp = {nums[i],nums[j],nums[k],nums[l]};
+                ans.push_back(temp);
+                k++;
+                l--;
+                while(nums[k] == nums[k-1]) k++;
+                while(nums[l] == nums[l+1]) l--;
+            }
+            else if(sum<target) k++;
+            else l--;
+        }
+    }
+}
+return ans;
+
+// TC = O(n*n *n) = O(n3)
+// SC = O(no of quads)

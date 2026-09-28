@@ -3,4 +3,28 @@ TWO SUM pattern and algorithm
 QUestion to find whether the array contains two element of sum k 
 */
 // arr = [2,6,5,8,11]  target =14
-// BruteForce : Pick one element and take the sum of that element with every other 
+// BruteForce : Pick one element and take the sum of that element with every other element
+// Better : HashSet
+// Optimal : 2 pointer approach
+
+int left = 0 ;
+int right = 0;
+sort(arr.begin(),arr.end());
+while(left<right)
+{
+    int sum = arr[left] + arr[right];
+    if(sum == target)
+    {
+        return "YES";
+    }
+    else if(sum>target)
+    {
+        right--;
+    }
+    else
+    {
+        left++;
+    }
+    
+} 
+return "NO"
