@@ -1,0 +1,37 @@
+/*
+This is the question where an array is given and we are asked to move all the zeros at the end of the array 
+
+We have one optimal solution for this is to use the 2 pointer approach 
+
+here the first thing that we will be doing is to find the first zeroth index and then we will take another loop and will swap 
+whenever we are going to counter a number which aint zero and will be inccreasing the pointer accordingly!
+This is the most optimal solution which we can have on the worst case scenerio we will be having TC = O(N)
+
+BruteForce : Store all the zeros in one array 
+Store all non zeros in other array and then back the non zeros at the start of given array and then after that all the remaining positions
+of the array will be marked as zero by another loop 
+On the worst case we will incur a TC = O(2N)
+SC = O(x)
+
+arr[] = {1,0,2,3,2,0,0,4,5,1}
+
+*/
+
+int j = -1;
+for(int i = 0 ; i<n ; i++)
+{
+  if(arr[i] == 0)
+  {
+      j=i;
+      break;
+  }
+}
+for(int i = 0 ; i<n ; i++)
+{
+  if(arr[i] != 0 )
+  {
+    swap(arr[i] , arr[j]);
+    j++;
+  }
+}
+
