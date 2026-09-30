@@ -1,0 +1,53 @@
+/*
+Majority Elemnt (an element that appears more than n/2 times)
+Here comes the most optimal approach which is Moore's Voting algorithm
+arr[] = [7 7 5 7 5  5 7 5 5 7 7 5 5 5 5]
+n is the size of the array 
+
+Bruteforce : Take each element and count its number of occurence TC = O(n square)
+Better : Hashing (Ordered Map) key will be the element and value will be the count
+In map the keys are in sorted order TC = O(n log N) + O(N)   SC = O(N) if all elements are unique
+
+Optimal : Moore's Voting algorithm
+if i cancel out different elements only the majority element will survive 
+Pair different elements - cancel them
+Majority element occur more than half and more than others combined 
+So it cannot be cancelled completely
+
+intution is : Can i cancel different elements?
+
+int cnt = 0 ;
+int el;
+for(int i = 0 ; i<n ; i++)
+{
+    if(cnt == 0)
+    {
+        cnt = 1;
+        el = a[i];
+    }
+    else if(a[i] == el)
+    {
+        cnt++;
+    }
+    else{
+        cnt--;
+    }
+    // value of count at the end doesnt represent anything it just says that there may exist a majority element which can be el 
+    
+}
+if the question doesnt guarantee the majority element then we should loop again for element el to know its exact frequency
+
+int cnt1 = 0;
+for(int i = 0 ; i<n ; i++)
+{
+    if(a[i] == el)
+        cnt1++;
+}
+if(cnt1 > n/2)
+    return el;
+
+return -1;
+
+TC = O(N)    +   O(N) (this extra O(N) comes only when question doesnt guarantee about element)
+SC = O(1)
+*/
