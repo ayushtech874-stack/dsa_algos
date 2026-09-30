@@ -11,6 +11,15 @@ Better : Take two loops and do the same TC = O(N2)
 Optimal : Kadane's Algorithm
 It suggests that there is no point of carrying negative sum (sum<0) forward as it will just hamper my sum negatively
 
+When I'm standing at the current element, should I continue the subarray I already have, or should I start a new subarray here?
+
+Assume a case : right now i have a sum of 5 with me and in next step i recieved -6
+sum becomes -1 and next is 4 should i start fresh or carry the previous sum itself 
+
+-1+4 = 3
+4 as a new subarray is going to give me sum as 4 
+So starting fresh is going to give me the maximum sum ; This is the central idea of Kadane's Algorithm 
+
 PseudoCode :
 
 int maxi = INT_MIN;
