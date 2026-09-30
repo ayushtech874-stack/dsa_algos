@@ -1,0 +1,66 @@
+/*
+Maximum Subarray Sum
+Subarray : contigous part of array
+
+arr[] = [-2 -3 4 -1 -2 1 5 -3]
+
+Bruteforce : take three loops , point one element take sum of all subarrays related to it and compare TC = O(N3)
+
+Better : Take two loops and do the same TC = O(N2)
+
+Optimal : Kadane's Algorithm
+It suggests that there is no point of carrying negative sum (sum<0) forward as it will just hamper my sum negatively
+
+PseudoCode :
+
+int maxi = INT_MIN;
+int sum = 0;
+for(int i = 0 ; i<n ; i++)
+{
+    sum = sum + arr[i];
+    if( sum > maxi )
+    {
+        maxi = sum;
+    }
+    if(sum<0)
+    {
+        sum=0;
+    }
+}
+return maxi;
+
+// So here we are just returning the maximum subarray sum and not the subarray itself
+The question may differ so do it accordingly 
+
+TC = O(N)   SC = O(1)
+
+*/
+
+
+/*
+Same question of kadane's algorithm but here we are going to print subarray as well
+
+int maxi = INT_MIN;
+int start ; 
+int sum = 0;
+int ansStart = -1;
+int ansEnd = -1;
+for(int i = 0 ; i<n ; i++)
+{
+    if(sum == 0) start = i;
+    sum = sum + arr[i];
+    if(sum > maxi)
+    {
+        maxi = sum ; 
+        // Keeping the track of subarray!
+        ansStart = start;
+        ansEnd = i;
+    }
+    if(sum < 0)
+    {
+        sum = 0;
+    }
+}
+TC = O(N)
+SC = O(1)
+*/
