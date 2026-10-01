@@ -1,0 +1,98 @@
+/* 
+This is the problem where size of array is n and it consists of elements both positive and negative
+We have to array first positive then negative and so on in same order how it is given in 
+initial array 
+Type 1 : Number of positive = Number of negative
+Type 2 : Number of positive != Number of negative
+
+Solution TYPE 1 : 
+Bruteforce : We will iterate through array and store positive and negative in seperate arrays
+And then again iterate n/2 times and put the +ve first at 0th index and on odd index 
+we will put -ve elements TC = 3N/2   SC = N
+
+Optimal : We cannot optimise the SC but we can do this for time complexity 
+
+Pseudocode : 
+
+int n = nums.size();
+vector<int> ans(n,0); // answer vector list
+int pos = 0 ; // we will store pos at first at 0th index
+int neg = 1 ; // we will store neg at first at 1st index
+for(int i = 0 ; i<n ; i++)
+{
+    if(nums[i] > 0)
+    {
+        nums[pos] = nums[i];
+        pos + = 2;
+    }
+    else 
+    {
+        nums[neg] = nums[i];
+        neg + = 2; 
+    }
+}
+return ans;
+*/
+
+/*
+TYPE 2 : There can be extra +ve or -ve so first we need to place in order once +ve then 
+-ve and that last whatever left will store it directly in same order 
+
+PseudoCode : 
+
+vector<int> pos;
+vector<int> neg;
+int n = nums.size();
+for(int i = 0 ; i<n ; i++)
+{
+    if(nums[i]>0)
+    {
+        pos.push_back(nums[i]);
+    }
+    else 
+    {
+        neg.push_back(nums[i]);
+    }
+}
+if(pos.size()  > neg.size())
+{
+    // Positive is more negative is less 
+    for(int i = 0 ; i<neg.size(); i++)
+    {
+        nums[2*i] = pos[i];
+        nums[2*i+1] = neg[i]; 
+    }
+
+    int index = neg.size() * 2;
+
+    // eg neg.size()= 2   , so we are going to store 2 +ve and 2 -ve so next time we are 
+    // going to store directly from index 4 all the positive numbers
+
+    for(int i = neg.size() ; i<pos.size(); i++)  // iterating positive list
+    {
+        nums[index] = pos[i];
+        index++;
+    }
+}
+else
+{
+    // Negative is more Positive is less 
+    for(int i = 0 ; i<pos.size(); i++)
+    {
+        nums[2*i] = pos[i];
+        nums[2*i+1] = neg[i]; 
+    }
+
+    int index = pos.size() * 2;
+
+    // eg pos.size()= 2   , so we are going to store 2 +ve and 2 -ve so next time we are 
+    // going to store directly from index 4 all the negative numbers
+
+    for(int i = pos.size() ; i < neg.size(); i++)  // iterating negative list
+    {
+        nums[index] = neg[i];
+        index++;
+    }
+}
+return nums;
+*/
