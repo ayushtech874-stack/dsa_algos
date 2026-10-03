@@ -19,4 +19,48 @@ TC = O( N! * N )
 Better : In C++, use STL next_Permutation which is inbuilt
 
 Optimal : 
+Step 1 : Keep the longest possible prefix unchanged.
+
+Step 2 : Find the position where we can make the smallest possible increase.
+
+Step 3 : After increasing that position, make everything after it as small as possible.
+
+arr [] = [2 1 5 4 3 0 0]
+next permutation = 2 3 0 0 1 4 5 
+for this we need to find the dip 
+so for that we need to find the longest prefix match 
+
+Pseudocode : 
+
+int index = -1;
+for(int i = n-2 ; i>=0 ; i--)
+{
+    if(arr[i] < arr[i+1])         // got index which is last longer prefix
+    {
+        index = i ;
+        break;
+    }
+}
+if(index == -1)
+{
+    // no dip found that is the given array is the largest permutation
+    // so we are just reversing the things to get the next permutation
+    reverse(arr);
+    return ;
+}
+for(int i = n-1 ; i >= index ; i--)
+{
+    if( arr[i] > arr[index])
+    {
+        // swapping by getting next big element than the dip 
+        // because if we got dip at index i rest all elements must be bigger than that on right
+        swap(arr[i] , arr[index]);
+        break;
+    }
+}
+reverse(arr, index+1 , n-1);   // reversing rest of the array to get next permutation
+return arr;
+
+TC = O(3 * N)
+SC = O(1)
 */
