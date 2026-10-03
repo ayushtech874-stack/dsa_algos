@@ -1,0 +1,77 @@
+/*
+Find the missing number in the array 
+arr[] = [1,2,4,5]
+it says n = 5 
+it most contain only elements from 1 to n
+and array consist of only n-1 element here n  = 5 and elements is now 4 
+in above example 3 is missing
+
+BruteForce : 
+Pick one element from 1 to N and check for it in the array by iterating it throughout
+and keep a flag to know whether it is present or not
+TC = O(N^2)
+SC = O(1)
+
+Better : 
+Hashing : store the elements array size is n and then hashmap is n+1 and store in hashmap
+numbers from 1 to N and iterate the array and mark the hashmap and then check hash map 
+again to know which is not marked and we can return accordingly 
+TC = O(2N)
+SC = O(N)
+
+Optimal : Can be done via two processes on directly using pure Maths and other using 
+XOR concept 
+
+1. From maths me know that the formula for the sum of first N natural number = N(N+1)/2
+so we will be iterating the array and taking out the sum of the array and then subtracting
+it from the theoretical sum = n(n+1)/2
+and therefore we will be getting the missing number 
+TC = O(N)
+SC = O(1)
+Pseudo Code: 
+int sum = n(n+1)/2;
+int calcSum = 0;
+for(int i=0;i<n;i++)
+{
+    calcSum += arr[i];
+}  
+return (sum - calcSum);
+
+2. By XOR, we know that the XOR of a number with itself is 0 and with 0 it is number 
+
+a^a = 0
+a^0 = a
+PseudoCode:
+
+xor1 = 0;
+for(int i = 1; i<=n ; i++)
+{
+    xor1 = xor1 ^ i;
+}
+xor2 = 0;
+for(int i = 0; i<n ; i++)
+{
+    xor2 = xor2 ^ arr[i];
+}
+return xor1 ^ xor2;
+
+TC = O(2N)
+
+// Other way not to use extra time is doing both in single loop itself
+
+PseudoCode : 
+int xor1 = 0;
+int xor2 = 0;
+int n = N-1;
+for(int i=0 ; i<n ; i++)
+{
+    xor2 = xor2 ^ a[i];
+    xor1 = xor1 ^ (i+1);
+}
+xor1 = xor1 ^ N;
+return XOR1 ^ XOR2;
+
+// N = no of natural numbers
+// n = N-1 = size of array 
+//TC = O(N)
+*/

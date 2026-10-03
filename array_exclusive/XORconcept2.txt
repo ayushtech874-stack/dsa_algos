@@ -1,0 +1,34 @@
+/*
+Find the missing number which is appearing once and rest all others are appearing 
+twice 
+arr[] = [1 1 2 3 3 4 4]
+so the missing nummber is 2 
+whenever we see 2 things and need to find one missing then XOR can come into picture 
+
+BruteForce : 
+Pick one element 
+Linear search and count the occurence and check it and return accrodingly 
+TC = O(N^2)
+
+Better : Hashing 
+HashMap stores key and value pair so store element and its count and then check its 
+frequency and return accordingly 
+
+TC = O(2N)
+SC = O(N)
+
+Optimal : Here comes XOR concept . Twice is mentioned so a^a = 0 and a^0 = a
+TC = O(N)
+SC = O(1)
+
+PseudoCode :
+ 
+int xor=0;
+for(int i =0 ; i<n ; i++)
+{
+    xor = xor ^ arr[i];
+}
+return xor;
+
+
+*/
